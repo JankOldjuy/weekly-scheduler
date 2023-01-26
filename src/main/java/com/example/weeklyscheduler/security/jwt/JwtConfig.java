@@ -21,12 +21,6 @@ public class JwtConfig {
     private String header;
     private String secretKey;
     private int expiration;
-    //private SignatureAlgorithm signatureAlgorithm;
-
-
-    /*public void setSignatureAlgorithm(SignatureAlgorithm signatureAlgorithm) {
-        this.signatureAlgorithm = signatureAlgorithm;
-    }*/
 
     public void setHeader(String header) {
         this.header = header;
@@ -39,8 +33,6 @@ public class JwtConfig {
     public void setExpiration(int expiration) {
         this.expiration = expiration;
     }
-
-
 
     public String getHeader() {
         return header;

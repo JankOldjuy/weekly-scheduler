@@ -48,8 +48,9 @@ public class JwtUtils {
 
     private Claims extractClaims(String jwt){
         return Jwts
-                .parser()
-                .setSigningKey(jwtConfig.getSecretKey())
+                .parserBuilder()
+                .setSigningKey(jwtConfig.getSecretKey().getBytes())
+                .build()
                 .parseClaimsJws(jwt)
                 .getBody();
     }
@@ -57,11 +58,11 @@ public class JwtUtils {
 
     public String createJwtToken(UserDetails userDetails, Map<String, Object> claims){
         return "Bearer " + Jwts.builder()
-                .setSubject(userDetails.getUsername())
                 .setClaims(claims)
+                .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + TimeUnit.HOURS.toMillis(jwtConfig.getExpiration())))
-                .signWith(SignatureAlgorithm.HS256, Keys.hmacShaKeyFor(getJwtConfig().getSecretKey().getBytes()))
+                .signWith(Keys.hmacShaKeyFor(getJwtConfig().getSecretKey().getBytes()), SignatureAlgorithm.HS256)
                 .compact();
     }
 

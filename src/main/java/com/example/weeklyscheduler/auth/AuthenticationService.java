@@ -36,8 +36,7 @@ public class AuthenticationService {
     public String register(UserSubmissionRequest userSubmissionRequest){
         System.out.println(jwtUtils.getJwtConfig().getSecretKey());
 
-        return jwtUtils.createJwtToken(customUserDetailsService.
-                saveUser(userSubmissionRequest), new HashMap<>());
+        return jwtUtils.createJwtToken(customUserDetailsService.saveUser(userSubmissionRequest), new HashMap<>());
     }
     public String authenticate(UserLoginRequest userLoginRequest){
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(

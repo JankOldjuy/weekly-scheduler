@@ -35,15 +35,14 @@ public class AuthController {
     }
 
 
-    @GetMapping("/login")
-    public ResponseEntity<String> addUser(@RequestBody UserLoginRequest userLoginRequest){
 
+    
+    @PostMapping("/login")
+    public ResponseEntity<String> addUser(@RequestBody UserLoginRequest userLoginRequest){
 
         return new ResponseEntity<>(authenticationService.authenticate(userLoginRequest),
                 HttpStatus.OK);
     }
-
-
 
 
 }
