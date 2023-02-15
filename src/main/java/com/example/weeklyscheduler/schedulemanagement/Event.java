@@ -1,5 +1,6 @@
-package com.example.weeklyscheduler.model;
+package com.example.weeklyscheduler.schedulemanagement;
 
+import com.example.weeklyscheduler.schedulemanagement.Schedule;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.lang.NonNull;

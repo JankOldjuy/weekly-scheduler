@@ -1,0 +1,25 @@
+spring:
+  jackson:
+    date-format: yyyy/MM/dd
+  datasource:
+    driver-class-name: org.h2.Driver
+    username: admin
+    password: password123
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+
+  config:
+    activate:
+      on-profile: dev
+
+jwt:
+  header: Authorization
+  secretKey: "337336763979244226452948404D635166546A576D5A7134743777217A25432A"
+  expiration: 23
+
+clientSide:
+  url: http://localhost:5173
+

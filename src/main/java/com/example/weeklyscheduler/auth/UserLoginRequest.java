@@ -1,4 +1,4 @@
-package com.example.weeklyscheduler.model;
+package com.example.weeklyscheduler.auth;
 
 /**
  * @author jmo

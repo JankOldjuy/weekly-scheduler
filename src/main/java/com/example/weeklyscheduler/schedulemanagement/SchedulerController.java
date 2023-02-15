@@ -1,11 +1,6 @@
-package com.example.weeklyscheduler.api;
+package com.example.weeklyscheduler.schedulemanagement;
 
 import com.example.weeklyscheduler.auth.WeeklyPlannerUser;
-import com.example.weeklyscheduler.model.Event;
-import com.example.weeklyscheduler.model.Schedule;
-import com.example.weeklyscheduler.model.WeeklyEventRequest;
-import com.example.weeklyscheduler.service.EventRepo;
-import com.example.weeklyscheduler.service.ScheduleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,7 +9,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.file.attribute.UserPrincipalNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +17,7 @@ import java.util.List;
 
 
 @RequestMapping("/event")
+@CrossOrigin("${clientSide.url}")
 @RestController
 public class SchedulerController {
 
@@ -46,8 +41,6 @@ public class SchedulerController {
                 findByWeeklyPlannerUser_Id(((WeeklyPlannerUser)auth.getPrincipal()).getId()).
                 orElse(null);
 
-        System.out.println(weeklyEventRequest);
-        System.out.println(((WeeklyPlannerUser) auth.getPrincipal()).getId() + " schedule is null " + (schedule == null));
 
 
         Event event = new Event();
@@ -74,11 +67,11 @@ public class SchedulerController {
     @GetMapping("getAllEvents")
     public ResponseEntity<List<Event>> getAllEvents() throws UserPrincipalNotFoundException {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
         Schedule schedule = scheduleRepo.
                 findByWeeklyPlannerUser_Id(((WeeklyPlannerUser)auth.getPrincipal()).getId()).
                 orElse(null);
 
-        System.out.println(((WeeklyPlannerUser) auth.getPrincipal()).getId() + " schedule is null " + (schedule.getEvents().size()));
 
 
         return ResponseEntity.ok(schedule == null? null: schedule.getEvents());

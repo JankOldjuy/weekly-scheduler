@@ -1,6 +1,6 @@
-package com.example.weeklyscheduler.service;
+package com.example.weeklyscheduler.schedulemanagement;
 
-import com.example.weeklyscheduler.model.Schedule;
+import com.example.weeklyscheduler.schedulemanagement.Schedule;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

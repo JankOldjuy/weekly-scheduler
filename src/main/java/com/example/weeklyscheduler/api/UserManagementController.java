@@ -24,12 +24,6 @@ public class UserManagementController {
     }
 
 
-    @PostMapping("/saveUser/{userName}")
-    public ResponseEntity<String> saveUser(@PathVariable String userName){
-        //dbService.saveUser(userName);
-        return new ResponseEntity<String>("User saved", HttpStatus.I_AM_A_TEAPOT);
-    }
-
 
      @PreAuthorize("hasAuthority('ROLE_USER')")
      @GetMapping("/getAll")

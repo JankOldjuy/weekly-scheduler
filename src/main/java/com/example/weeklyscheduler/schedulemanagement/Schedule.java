@@ -1,4 +1,4 @@
-package com.example.weeklyscheduler.model;
+package com.example.weeklyscheduler.schedulemanagement;
 
 import com.example.weeklyscheduler.auth.WeeklyPlannerUser;
 import jakarta.persistence.*;

@@ -1,6 +1,5 @@
 package com.example.weeklyscheduler.auth;
 
-import com.example.weeklyscheduler.model.UserSubmissionRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;

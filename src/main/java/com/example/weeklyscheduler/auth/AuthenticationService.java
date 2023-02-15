@@ -1,7 +1,5 @@
 package com.example.weeklyscheduler.auth;
 
-import com.example.weeklyscheduler.model.UserLoginRequest;
-import com.example.weeklyscheduler.model.UserSubmissionRequest;
 import com.example.weeklyscheduler.security.jwt.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,24 +31,24 @@ public class AuthenticationService {
         this.jwtUtils = jwtUtils;
     }
 
-    public String register(UserSubmissionRequest userSubmissionRequest){
+    public AuthDTO register(UserSubmissionRequest userSubmissionRequest){
         System.out.println(jwtUtils.getJwtConfig().getSecretKey());
 
-        return jwtUtils.createJwtToken(customUserDetailsService.saveUser(userSubmissionRequest), new HashMap<>());
+        return new AuthDTO(jwtUtils.
+                createJwtToken(customUserDetailsService.
+                        saveUser(userSubmissionRequest), new HashMap<>()));
     }
-    public String authenticate(UserLoginRequest userLoginRequest){
+    public AuthDTO authenticate(UserLoginRequest userLoginRequest){
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 userLoginRequest.getUserName(),
                 userLoginRequest.getPassword()
         ));
 
+
         WeeklyPlannerUser user =
                 (WeeklyPlannerUser) customUserDetailsService.loadUserByUsername(userLoginRequest.getUserName());
 
-        return jwtUtils.createJwtToken(user, new HashMap<>());
-
-
-
+        return new AuthDTO(jwtUtils.createJwtToken(user, new HashMap<>()));
     }
 
 

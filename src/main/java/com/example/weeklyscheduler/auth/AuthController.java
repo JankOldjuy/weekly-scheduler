@@ -1,7 +1,5 @@
 package com.example.weeklyscheduler.auth;
 
-import com.example.weeklyscheduler.model.UserLoginRequest;
-import com.example.weeklyscheduler.model.UserSubmissionRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RequestMapping("auth")
+@CrossOrigin("${clientSide.url}")
 @RestController
 public class AuthController {
 
@@ -27,7 +26,7 @@ public class AuthController {
 
 
     @PostMapping("/addUser")
-    public ResponseEntity<String> addUser(@RequestBody UserSubmissionRequest userSubmissionRequest){
+    public ResponseEntity<AuthDTO> addUser(@RequestBody UserSubmissionRequest userSubmissionRequest){
 
 
         return new ResponseEntity<>(authenticationService.register(userSubmissionRequest),
@@ -36,11 +35,11 @@ public class AuthController {
 
 
 
-    
     @PostMapping("/login")
-    public ResponseEntity<String> addUser(@RequestBody UserLoginRequest userLoginRequest){
+    public ResponseEntity<AuthDTO> addUser(@RequestBody UserLoginRequest userLoginRequest){
 
-        return new ResponseEntity<>(authenticationService.authenticate(userLoginRequest),
+        return new ResponseEntity<>(
+                authenticationService.authenticate(userLoginRequest),
                 HttpStatus.OK);
     }
 
